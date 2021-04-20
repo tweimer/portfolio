@@ -475,7 +475,7 @@ public class CommerzbankPDFExtractor extends AbstractPDFExtractor
 
     private String stripBlanks(String input)
     {
-        return input.replaceAll(" ", ""); //$NON-NLS-1$ //$NON-NLS-2$
+        return input.replace(" ", ""); //$NON-NLS-1$ //$NON-NLS-2$
     }
 
     @Override
