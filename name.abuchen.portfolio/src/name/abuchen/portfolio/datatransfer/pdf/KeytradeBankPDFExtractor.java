@@ -83,9 +83,9 @@ public class KeytradeBankPDFExtractor extends AbstractPDFExtractor
                 .match("^(Ausführungsdatum und -zeit|Ordre créé à) : (?<date>\\d+/\\d+/\\d{4}) (?<time>\\d+:\\d+:\\d+) .*$")
                 .assign((t, v) -> {
                     if (v.get("time") != null)
-                        t.setDate(asDate(v.get("date").replaceAll("/", "."), v.get("time")));
+                        t.setDate(asDate(v.get("date").replace('/', '.'), v.get("time")));
                     else
-                        t.setDate(asDate(v.get("date").replaceAll("/", ".")));
+                        t.setDate(asDate(v.get("date").replace('/', '.')));
                 })
 
                 // Lastschrift 1.994,39 EUR Valutadatum 17/03/2021
@@ -162,7 +162,7 @@ public class KeytradeBankPDFExtractor extends AbstractPDFExtractor
                 // CREDIT COUPONS Ex-coupon 01/02/2021
                 .section("date")
                 .match("^.* (Ex-Kupon|Ex-coupon|Kupons)(.*)? (?<date>\\d+/\\d+/\\d{4})$")
-                .assign((t, v) -> t.setDateTime(asDate(v.get("date").replaceAll("/", "."))))
+                .assign((t, v) -> t.setDateTime(asDate(v.get("date").replace('/', '.'))))
 
                 // Nettoguthaben 5,67 EUR Datum  01/07/2020
                 .section("amount", "currency").optional()
