@@ -567,7 +567,7 @@ public class IBFlexStatementExtractor implements Extractor
             String currency = asCurrencyUnit(element.getAttribute("currency"));
             String isin = element.getAttribute("isin");
             String cusip = element.getAttribute("cusip");
-            Optional<String> computedTickerSymbol = tickerSymbol.map(t -> t.replaceAll(" ", "-"));
+            Optional<String> computedTickerSymbol = tickerSymbol.map(t -> t.replace(" ", "-"));
 
             // Store cusip in isin if isin is not available
             if (isin.length() == 0 && cusip.length() > 0)
